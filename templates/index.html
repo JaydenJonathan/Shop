@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>--SHOP--</title>
+        <style>
+            * {
+                font-family: Courier new;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Available Products</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.c_name }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <table>
+            <tr>
+                <th>Buying</th>
+            </tr>
+            {% for item in p_requests %}
+            <tr>
+                <td>{{ item.request }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <form action='/add' method='POST'>
+            <input type="text" name="name" placeholder="Product Name" required>
+            <input type="text" name="c_name" placeholder="Creator Name" required>
+            <input type="number" step="0.01" name="price" placeholder="Price" required>
+            <button type="submit">Add Product</button>
+        </form>
+        <form action='/buy' method='GET'>
+            <input type="text" name="name" placeholder="Product Name" required>
+            <button type="submit">Buy</button>
+        </form>
+        <form action='/cancel' method='GET'>
+            <input type="text" name="name" placeholder="canceled Product name" required>
+            <button type="submit">cancel</button>
+        </form>
+        <form action='/delete' method='GET'>
+            <input type="text" name="name" placeholder="deleted Product name" required>
+            <input type="text" name="c_name" placeholder="Creator Name" required>
+            <input type="number" step="0.01" name="price" placeholder="Price" required>
+            <button type="submit">delete product</button>
+        </form>
+    </body>
+</html>
